@@ -2,7 +2,9 @@
 
 require_once (dirname(__DIR__).'/vendor/autoload.php');
 use ChatApp\Session;
+use ChatApp\Profile;
 use Dotenv\Dotenv;
+
 $dotenv = new Dotenv(dirname(__DIR__));
 $dotenv->load();
 
@@ -21,9 +23,11 @@ if (Session::get('start') != null && empty($_GET['user'])) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="../public/assests/js/jquery-3.0.0.min.js"></script>
   <script src="../public/assests/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="../public/assests/js/message.js"></script>
+  <?php 
+  $userId = Session::get('start');
+  $data = Profile::getProfile($userId);?>
+  <script type="text/javascript" src="../public/assests/js/message.js" id="heading-avatar" data-src="<?php echo !empty($data["pic"]) ? $data["pic"] : '../../public/assests/img/ankit.png';?>"></script>
 </head>
-
 <body>
 
 

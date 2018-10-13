@@ -3,7 +3,8 @@ $(document).ready(function(){
 
   $('body').load('../public/assests/partials/app.html', function() {
   // $('body').append(pre);
-
+	  
+  $('body').find('.user-avatar').attr({"src" : $('#heading-avatar').data('src')});
 
 var heightFrom; //  global variable
 // Websocket Connection Open
@@ -134,10 +135,11 @@ function newConversation(element, load) {
 // Set Details
 function setConversationDetails(details) {
   $("#conversationHeading").html("");
+  
 
   var headingEle = $("<div></div>").addClass("col-sm-9 col-xs-9 heading-left");
   var headingAva = $("<div></div>").addClass("heading-avatar");
-  var headingImg = $("<img>").attr({"src" : "../public/assests/img/ankit.png"});
+  var headingImg = $("<img>").attr({"src" : $('#heading-avatar').data('src')});
   headingAva.append(headingImg);
   headingEle.append(headingAva);
 
