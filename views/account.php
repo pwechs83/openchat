@@ -59,7 +59,7 @@ if ($userId != null && $user == "account.php") {
                     <div class="boxx" >
 
                         <div class="pic">
-                            <img src="../../public/assests/img/ankit.png">
+                            <img src="<?php echo !empty($row["pic"]) ? $row["pic"] : '../../public/assests/img/ankit.png';?>">
                         </div>
 
                         <div class="brief">
@@ -95,7 +95,9 @@ if ($userId != null && $user == "account.php") {
                     ?>
 
                     <div class="boxx" id="profile">
-                        <form method="post" action="../profile_generate.php">
+                        <form method="post" action="../profile_generate.php" enctype="multipart/form-data" >
+                            <label>User Pic:</label><br>
+    						<input type="file" name="userpic" accept="image/*"><br>
                             <label>Status : </label>
                             <textarea name="status" id="status"><?php echo $row['status']; ?></textarea>
                             <label>Education : </label>

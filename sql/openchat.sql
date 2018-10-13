@@ -57,7 +57,8 @@ CREATE TABLE `profile` (
   `login_id` int(11) NOT NULL,
   `status` text,
   `education` text,
-  `gender` varchar(10) DEFAULT NULL
+  `gender` varchar(10) DEFAULT NULL,
+  `pic` longtext
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 

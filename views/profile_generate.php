@@ -22,7 +22,17 @@ if (isset($_POST['submit'])) {
         $status = get($_POST['status'], $data['status']);
         $edu = get($_POST['education'], $data['education']);
         $gender = get($_POST['gender'], $data['gender']);
-        $query = "UPDATE profile set status = '$status', education = '$edu', gender = '$gender' where login_id = '$userId'";
+        
+        if(!empty($_FILES["userpic"]["tmp_name"])){
+            
+            $path = $_FILES["userpic"]["tmp_name"];
+            $type = pathinfo($path, PATHINFO_EXTENSION);
+            $data = file_get_contents($path);
+            $base64pic = 'data:image/' . $type . ';base64,' . base64_encode($data);
+          
+            $pic = get($base64pic, $data['pic']);
+        }
+        $query = "UPDATE profile set status = '$status', education = '$edu', gender = '$gender', pic = '$pic' where login_id = '$userId'";
         if ($result = $connect->query($query)) {
             header('Location:'.getenv('APP_URL').'/views/account.php');
         } else {
